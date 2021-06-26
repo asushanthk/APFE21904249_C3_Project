@@ -76,6 +76,34 @@ class RestaurantTest {
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    @Test
+    public void calculate_order_value_when_no_item_are_ordered(){
+        Restaurant restaurant = initDefaultRestaurant();
+        List<String> orderList = new ArrayList<>();
+        int totalValue = restaurant.getOrderValue(orderList);
+        assertEquals(0, totalValue);
+    }
+
+    @Test
+    public void calculate_order_value_when_one_item_is_ordered(){
+        Restaurant restaurant = initDefaultRestaurant();
+        List<String> orderList = new ArrayList<>();
+        orderList.add("Sweet corn soup");
+        int totalValue = restaurant.getOrderValue(orderList);
+        assertEquals(119, totalValue);
+    }
+
+    @Test
+    public void calculate_order_value_when_two_item_are_ordered(){
+        Restaurant restaurant = initDefaultRestaurant();
+        List<String> orderList = new ArrayList<>();
+        orderList.add("Sweet corn soup");
+        orderList.add("Vegetable lasagne");
+        int totalValue = restaurant.getOrderValue(orderList);
+        assertEquals(388, totalValue);
+    }
+
+
     private Restaurant initRestaurant(LocalTime openingTime, LocalTime closingTime){
         Restaurant restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
