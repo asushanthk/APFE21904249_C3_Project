@@ -95,4 +95,14 @@ public class Restaurant {
         }
         return itemNameAndPriceMap;
     }
+
+    public int getOrderValue(List<String> foodItemsList){
+        int totalPrice =0;
+        Map<String,Integer>  itemNameAndPriceMap = getItemNameAndPriceMap();
+        for(String itemName : foodItemsList){
+            int price = itemNameAndPriceMap.get(itemName);
+            totalPrice = price + totalPrice;
+        }
+        return totalPrice;
+    }
 }
